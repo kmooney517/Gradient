@@ -1,0 +1,13 @@
+<div class="addNew">
+  <form ng-submit="addRiver(river)">
+    <input placeholder="Photo Url" ng-model="river.photo">
+    <input placeholder="River Name" ng-model="river.name">
+    <input placeholder="River Location" ng-model="river.location">
+    <input placeholder="River Class" ng-model="river.class">
+    <input placeholder="Water Level" ng-model="river.level">
+    <input type="date" placeholder="Date" ng-model="river.date">
+    <textarea placeholder="description" ng-model="river.description"></textarea>
+    <button>Submit</button>
+    <button ng-click="cancelClick()">Cancel</button>
+  </form>
+</div>

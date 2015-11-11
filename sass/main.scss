@@ -1,0 +1,68 @@
+@import 'bourbon';
+@import 'neat';
+@import 'font-awesome';
+@import 'foundation';
+
+* {
+  list-style: none;
+}
+
+body {
+  background: gray;
+}
+
+.landingPage { 
+  width: 500px;
+  margin: 15px auto;
+}
+
+.logInPage {
+  width: 500px;
+  margin: 15px auto;
+}
+
+.createAcct {
+  width: 500px;
+  margin: 15px auto;
+}
+
+.addNew {
+  width: 500px;
+  margin: 15px auto;
+}
+
+.userHomePage {
+  @include outer-container;
+  margin-left: 1%;
+  margin-top: 2%;
+}
+.leftBar{
+  @include span-columns(3);
+  border-right: 1px solid black;
+}
+.rightBar{
+  @include span-columns(9);
+  img {
+    height: 15em;
+    width: 40%;
+    display: inline-block;
+  }
+  .plusButton {
+    height: 5em;
+    width: 5em;
+    margin-left: 5em;
+  }
+}
+
+
+
+  // background: url('../images/colin.jpg') no-repeat center center fixed; 
+  // -webkit-background-size: cover;
+  // -moz-background-size: cover;
+  // -o-background-size: cover;
+  // background-size: cover;
+
+
+
+
+

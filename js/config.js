@@ -31,6 +31,7 @@ let config = function ($stateProvider, $urlRouterProvider) {
     })
     .state('root.editRiver', {
       url: '/editRiver/:riverId',
+      controller: 'EditRiverController',
       templateUrl: './templates/editRiver.tpl.html'
     })
     .state('root.addNewRiver', {

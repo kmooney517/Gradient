@@ -1,13 +1,22 @@
-let SingleController = function($scope, $stateParams, $http, PARSE) {
+let SingleController = function($scope, $stateParams, RiverService, $state) {
   
-  let url = PARSE.URL + 'classes/river/' + $stateParams.riverId;
-  
-  $http.get(url, PARSE.CONFIG).then( (response) => {
+  console.log(RiverService);
+
+  RiverService.getRivers().then( function(response) {
+    $scope.rivers = response.data.results;
+  });
+
+  RiverService.getRiver($stateParams.riverId).then( function (response) {
     $scope.singleRiver = response.data;
   });
 
+  $scope.delete = function () {
+    RiverService.deleteRiver($stateParams.riverId).then( 
+      $state.go('root.userHomePage')
+    ); 
+  };
 };
 
-SingleController.$inject = ['$scope', '$stateParams', '$http', 'PARSE'];
+SingleController.$inject = ['$scope', '$stateParams', 'RiverService', '$state'];
 
 export default SingleController;

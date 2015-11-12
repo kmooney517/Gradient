@@ -122,15 +122,15 @@ body {
     width: 30%;
   }
   .editButton {
-    height: 5em;
-    width: 5em;
-    margin-left: 4em;
+    height: 2em;
+    width: 2em;
+    margin-left: 2em;
     a{
       color: inherit;
     }
   }
   div.rating{
-    font-size: 4em;
+    font-size: 3em;
     color: yellow;
     margin-left: 1em;
     text-align: center;
@@ -180,6 +180,24 @@ body {
     margin-top: 2%;
     padding: 2%;
     border: 2px solid $grayColor;
+  }
+}
+
+.votes {
+  position: relative;
+  top: 2em;
+  margin-left: 2em;
+  button {
+    text-align: center;
+    display: block;
+    background: none;
+    padding: 1em;
+    border: 3px solid $grayColor;
+    border-radius: 5px;
+    &:hover{
+      color: $grayColor;
+      background: $textColor;
+    }
   }
 }
 

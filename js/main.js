@@ -1,10 +1,12 @@
 import angular from 'angular';
 import 'angular-ui-router';
 import configFunction from './config';
-import HomeController from './controllers/homeController';
 import AddRiverController from './controllers/addNewController';
 import RiverListController from './controllers/riverListController';
 import SingleController from './controllers/singleController';
+import EditRiverController from './controllers/editRiverController';
+import RiverService from './services/riverService';
+
 
 angular
   .module('app', ['ui.router'])
@@ -20,8 +22,9 @@ angular
   })
 
   .config(configFunction)
-  .controller('HomeController', HomeController)
   .controller('SingleController', SingleController)
   .controller('AddRiverController', AddRiverController)
   .controller('RiverListController', RiverListController)
+  .controller('EditRiverController', EditRiverController)
+  .service('RiverService', RiverService)
 ;

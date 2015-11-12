@@ -8526,13 +8526,13 @@ body {
     height: 10em;
     width: 30%; }
   .rightBar .editButton {
-    height: 5em;
-    width: 5em;
-    margin-left: 4em; }
+    height: 2em;
+    width: 2em;
+    margin-left: 2em; }
     .rightBar .editButton a {
       color: inherit; }
   .rightBar div.rating {
-    font-size: 4em;
+    font-size: 3em;
     color: yellow;
     margin-left: 1em;
     text-align: center; }
@@ -8581,5 +8581,20 @@ body {
   margin-top: 2%;
   padding: 2%;
   border: 2px solid #333333; }
+
+.votes {
+  position: relative;
+  top: 2em;
+  margin-left: 2em; }
+  .votes button {
+    text-align: center;
+    display: block;
+    background: none;
+    padding: 1em;
+    border: 3px solid #333333;
+    border-radius: 5px; }
+    .votes button:hover {
+      color: #333333;
+      background: #C1C9BF; }
 
 /*# sourceMappingURL=main.css.map */

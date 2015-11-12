@@ -30,6 +30,7 @@ var config = function config($stateProvider, $urlRouterProvider) {
     templateUrl: './templates/singleRiver.tpl.html'
   }).state('root.editRiver', {
     url: '/editRiver/:riverId',
+    controller: 'EditRiverController',
     templateUrl: './templates/editRiver.tpl.html'
   }).state('root.addNewRiver', {
     url: '/addNewRiver',
@@ -49,33 +50,18 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var AddRiverController = function AddRiverController($scope, $http, PARSE, $location) {
-
-  var url = PARSE.URL + 'classes/river';
-
-  var River = function River(obj) {
-    this.photo = obj.photo;
-    this.name = obj.name;
-    this.location = obj.location;
-    this['class'] = obj['class'];
-    this.level = obj.level;
-    this.date = obj.date;
-    this.userRating = obj.userRating;
-    this.description = obj.description;
-  };
+var AddRiverController = function AddRiverController($scope, $http, PARSE, $state, RiverService) {
 
   $scope.addRiver = function (obj) {
-
-    var r = new River(obj);
-    $http.post(url, r, PARSE.CONFIG).then(function (response) {
+    RiverService.addRiver(obj).then(function (response) {
       $scope.river = {};
     });
 
-    $location.path('/userHomePage');
+    $state.go('root.userHomePage');
   };
 };
 
-AddRiverController.$inject = ['$scope', '$http', 'PARSE', '$location'];
+AddRiverController.$inject = ['$scope', '$http', 'PARSE', '$state', 'RiverService'];
 
 exports['default'] = AddRiverController;
 module.exports = exports['default'];
@@ -86,11 +72,24 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var HomeController = function HomeController($scope) {};
+var EditRiverController = function EditRiverController($scope, $stateParams, RiverService, $state) {
 
-HomeController.$inject = ['$scope'];
+  console.log(RiverService);
 
-exports['default'] = HomeController;
+  RiverService.getRiver($stateParams.riverId).then(function (response) {
+    $scope.singleRiver = response.data;
+  });
+
+  $scope.editRiver = function (obj) {
+    RiverService.update(obj).then(function (response) {});
+
+    $state.go('root.userHomePage');
+  };
+};
+
+EditRiverController.$inject = ['$scope', '$stateParams', 'RiverService', '$state'];
+
+exports['default'] = EditRiverController;
 module.exports = exports['default'];
 
 },{}],4:[function(require,module,exports){
@@ -99,16 +98,25 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var RiverListController = function RiverListController($scope, $http, PARSE) {
+var RiverListController = function RiverListController($scope, RiverService) {
 
-  var url = PARSE.URL + 'classes/river';
-
-  $http.get(url, PARSE.CONFIG).then(function (response) {
+  RiverService.getRivers().then(function (response) {
     $scope.rivers = response.data.results;
   });
+
+  $scope.upVotes = 0;
+  $scope.downVotes = 0;
+
+  $scope.upVote = function () {
+    $scope.upVotes = $scope.upVotes + 1;
+  };
+
+  $scope.downVote = function (riverId) {
+    $scope.downVotes = $scope.downVotes + 1;
+  };
 };
 
-RiverListController.$inject = ['$scope', '$http', 'PARSE'];
+RiverListController.$inject = ['$scope', 'RiverService'];
 
 exports['default'] = RiverListController;
 module.exports = exports['default'];
@@ -119,16 +127,24 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var SingleController = function SingleController($scope, $stateParams, $http, PARSE) {
+var SingleController = function SingleController($scope, $stateParams, RiverService, $state) {
 
-  var url = PARSE.URL + 'classes/river/' + $stateParams.riverId;
+  console.log(RiverService);
 
-  $http.get(url, PARSE.CONFIG).then(function (response) {
+  RiverService.getRivers().then(function (response) {
+    $scope.rivers = response.data.results;
+  });
+
+  RiverService.getRiver($stateParams.riverId).then(function (response) {
     $scope.singleRiver = response.data;
   });
+
+  $scope['delete'] = function () {
+    RiverService.deleteRiver($stateParams.riverId).then($state.go('root.userHomePage'));
+  };
 };
 
-SingleController.$inject = ['$scope', '$stateParams', '$http', 'PARSE'];
+SingleController.$inject = ['$scope', '$stateParams', 'RiverService', '$state'];
 
 exports['default'] = SingleController;
 module.exports = exports['default'];
@@ -148,10 +164,6 @@ var _config = require('./config');
 
 var _config2 = _interopRequireDefault(_config);
 
-var _controllersHomeController = require('./controllers/homeController');
-
-var _controllersHomeController2 = _interopRequireDefault(_controllersHomeController);
-
 var _controllersAddNewController = require('./controllers/addNewController');
 
 var _controllersAddNewController2 = _interopRequireDefault(_controllersAddNewController);
@@ -164,6 +176,14 @@ var _controllersSingleController = require('./controllers/singleController');
 
 var _controllersSingleController2 = _interopRequireDefault(_controllersSingleController);
 
+var _controllersEditRiverController = require('./controllers/editRiverController');
+
+var _controllersEditRiverController2 = _interopRequireDefault(_controllersEditRiverController);
+
+var _servicesRiverService = require('./services/riverService');
+
+var _servicesRiverService2 = _interopRequireDefault(_servicesRiverService);
+
 _angular2['default'].module('app', ['ui.router']).constant('PARSE', {
   URL: 'https://api.parse.com/1/',
   CONFIG: {
@@ -172,9 +192,83 @@ _angular2['default'].module('app', ['ui.router']).constant('PARSE', {
       'X-Parse-REST-API-Key': 'nIk0XJw24U3jzaWEhXQXZu4D4XSGZQKEm2bDnn6s'
     }
   }
-}).config(_config2['default']).controller('HomeController', _controllersHomeController2['default']).controller('SingleController', _controllersSingleController2['default']).controller('AddRiverController', _controllersAddNewController2['default']).controller('RiverListController', _controllersRiverListController2['default']);
+}).config(_config2['default']).controller('SingleController', _controllersSingleController2['default']).controller('AddRiverController', _controllersAddNewController2['default']).controller('RiverListController', _controllersRiverListController2['default']).controller('EditRiverController', _controllersEditRiverController2['default']).service('RiverService', _servicesRiverService2['default']);
 
-},{"./config":1,"./controllers/addNewController":2,"./controllers/homeController":3,"./controllers/riverListController":4,"./controllers/singleController":5,"angular":9,"angular-ui-router":7}],7:[function(require,module,exports){
+},{"./config":1,"./controllers/addNewController":2,"./controllers/editRiverController":3,"./controllers/riverListController":4,"./controllers/singleController":5,"./services/riverService":7,"angular":10,"angular-ui-router":8}],7:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var RiverService = function RiverService($http, PARSE) {
+
+  var url = PARSE.URL + 'classes/river';
+
+  // Get all Rivers for user Instance
+
+  this.getRivers = function () {
+    return $http({
+      url: url,
+      headers: PARSE.CONFIG.headers,
+      method: 'GET'
+    });
+  };
+
+  // Get River Instance
+
+  // cache: true
+  this.getRiver = function (riverId) {
+    return $http({
+      method: 'GET',
+      url: url + '/' + riverId,
+      headers: PARSE.CONFIG.headers
+    });
+  };
+
+  // Creating a delete River instance
+
+  // cache: true
+  this.deleteRiver = function (riverId) {
+    return $http({
+      method: 'DELETE',
+      url: url + '/' + riverId,
+      headers: PARSE.CONFIG.headers
+    });
+  };
+
+  // Creating Add a new River Instance
+
+  var River = function River(obj) {
+    this.photo = obj.photo;
+    this.name = obj.name;
+    this.location = obj.location;
+    this['class'] = obj['class'];
+    this.level = obj.level;
+    this.date = obj.date;
+    this.userRating = obj.userRating;
+    this.description = obj.description;
+    this.upVotes = obj.upVotes;
+    this.downVotes = obj.downVotes;
+  };
+
+  this.addRiver = function (obj) {
+    var r = new River(obj);
+    return $http.post(url, r, PARSE.CONFIG);
+  };
+
+  // Creating Edit an existing River Instance
+
+  this.update = function (obj) {
+    return $http.put(url + '/' + obj.objectId, obj, PARSE.CONFIG);
+  };
+};
+
+RiverService.$inject = ['$http', 'PARSE'];
+
+exports['default'] = RiverService;
+module.exports = exports['default'];
+
+},{}],8:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.15
@@ -4545,7 +4639,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 /**
  * @license AngularJS v1.4.7
  * (c) 2010-2015 Google, Inc. http://angularjs.org
@@ -33450,11 +33544,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":8}]},{},[6])
+},{"./angular":9}]},{},[6])
 
 
 //# sourceMappingURL=main.js.map

@@ -5,7 +5,7 @@
       <li>User Name Here</li>
       <li><hr></li>
       <li><h5>Most Recent Rivers</h5></li>
-      <li ng-repeat="river in rivers"> <a href="#/singleRiver/{{ river.objectId }}">{{ river.name}}</a></li>
+      <li ng-repeat="river in rivers"> <a href="#/singleRiver/{{ river.objectId }}">{{ river.name }}</a></li>
     </ul>
   </div>
 
@@ -21,11 +21,17 @@
         <img class="block userHomePhoto" ng-src="{{ river.photo }}">
       </a>
       <div class="block editButton">
-      <a href="#/editRiver/{{ river.objectId }}"><i class="fa fa-pencil-square-o fa-4x"></i></a>
+        <a href="#/editRiver/{{ river.objectId }}"><i class="fa fa-pencil-square-o fa-3x"></i></a>
       </div>
+
       <div class="block rating">
         {{ river.userRating }} / 5
         <i class="fa fa-star"></i>
+      </div>
+
+      <div class="block votes">
+        <button ng-click="upVote()">Cool {{ river.upVotes }}</button>
+        <button ng-click="downVote()">Wat? Be Careful! {{ river.downVotes }}</button>
       </div>
 
       <hr>

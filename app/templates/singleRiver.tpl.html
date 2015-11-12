@@ -1,1 +1,57 @@
-<h1> {{ singleRiver.name }} </h1>
+<div class="singleRiverPage">
+
+  <div class="leftBar">
+    <ul>
+      <li>User Name Here</li>
+      <li><hr></li>
+      <li><h5>Most Recent Rivers</h5></li>
+      <li ng-repeat="river in rivers"> <a href="#/singleRiver/{{ river.objectId }}">{{ river.name}}</a></li>
+    </ul>
+
+    <a href="#/userHomePage"><button>Back to User Profile</button></a>
+  </div>
+
+
+  <div class="rightBar">
+    <h4 class="rtLeft"> River Name: <span>{{ singleRiver.name }}</span> </h4>
+    <h4 class="rtRight">My Rating: <span>{{ singleRiver.userRating }} / 5</span></h4>
+    <hr>
+
+    <div class="singleRiv">
+      <img class="singleRiverPhoto block" ng-src="{{ singleRiver.photo }}">
+      
+      <ul class="block">
+        <li> Date Paddled: <span>{{ singleRiver.date }}</span> </li>
+        <li> Class: <span>{{ singleRiver.class }}</span> </li>
+        <li> Location: <span>{{ singleRiver.location }}</span> </li>
+        <li> Water Level: <span>{{ singleRiver.level }}</span> </li>
+      </ul>
+        <p class="rivDescription"> Description: {{ singleRiver.description }} </p>
+
+    </div>
+
+  </div>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,22 +5,19 @@ let config = function ($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('root', {
       abstract: true,
-      templateUrl: './templates/layout.tpl.html'
+      templateUrl: './templates/admin/layout.tpl.html'
     })
     .state('root.home', {
       url: '/',
-      controller: 'HomeController',
-      templateUrl: './templates/landing.tpl.html'
+      templateUrl: './templates/admin/landing.tpl.html'
     })
     .state('root.login', {
       url: '/login',
-      controller: 'HomeController',
-      templateUrl: './templates/login.tpl.html'
+      templateUrl: './templates/admin/login.tpl.html'
     })
     .state('root.createAcct', {
       url: '/createAcct',
-      controller: 'HomeController',
-      templateUrl: './templates/createAcct.tpl.html'
+      templateUrl: './templates/admin/createAcct.tpl.html'
     })
     .state('root.userHomePage', {
       url: '/userHomePage',
@@ -31,6 +28,10 @@ let config = function ($stateProvider, $urlRouterProvider) {
       url: '/singleRiver/:riverId',
       controller: 'SingleController',
       templateUrl: './templates/singleRiver.tpl.html'
+    })
+    .state('root.editRiver', {
+      url: '/editRiver/:riverId',
+      templateUrl: './templates/editRiver.tpl.html'
     })
     .state('root.addNewRiver', {
       url: '/addNewRiver',

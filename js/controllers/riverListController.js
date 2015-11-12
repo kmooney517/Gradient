@@ -1,4 +1,4 @@
-let RiverListController = function ($scope, $http, PARSE, $location) {
+let RiverListController = function ($scope, $http, PARSE) {
 
   let url = PARSE.URL + 'classes/river';
 
@@ -6,13 +6,9 @@ let RiverListController = function ($scope, $http, PARSE, $location) {
     $scope.rivers = response.data.results;
   });
 
-  $scope.goToAddRiverClick = function () {
-    $location.path('/addNewRiver');
-  };
-
 
 };
 
-RiverListController.$inject = ['$scope', '$http', 'PARSE', '$location'];
+RiverListController.$inject = ['$scope', '$http', 'PARSE'];
 
 export default RiverListController;

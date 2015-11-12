@@ -10,19 +10,16 @@ var config = function config($stateProvider, $urlRouterProvider) {
 
   $stateProvider.state('root', {
     abstract: true,
-    templateUrl: './templates/layout.tpl.html'
+    templateUrl: './templates/admin/layout.tpl.html'
   }).state('root.home', {
     url: '/',
-    controller: 'HomeController',
-    templateUrl: './templates/landing.tpl.html'
+    templateUrl: './templates/admin/landing.tpl.html'
   }).state('root.login', {
     url: '/login',
-    controller: 'HomeController',
-    templateUrl: './templates/login.tpl.html'
+    templateUrl: './templates/admin/login.tpl.html'
   }).state('root.createAcct', {
     url: '/createAcct',
-    controller: 'HomeController',
-    templateUrl: './templates/createAcct.tpl.html'
+    templateUrl: './templates/admin/createAcct.tpl.html'
   }).state('root.userHomePage', {
     url: '/userHomePage',
     controller: 'RiverListController',
@@ -31,6 +28,9 @@ var config = function config($stateProvider, $urlRouterProvider) {
     url: '/singleRiver/:riverId',
     controller: 'SingleController',
     templateUrl: './templates/singleRiver.tpl.html'
+  }).state('root.editRiver', {
+    url: '/editRiver/:riverId',
+    templateUrl: './templates/editRiver.tpl.html'
   }).state('root.addNewRiver', {
     url: '/addNewRiver',
     controller: 'AddRiverController',
@@ -60,6 +60,7 @@ var AddRiverController = function AddRiverController($scope, $http, PARSE, $loca
     this['class'] = obj['class'];
     this.level = obj.level;
     this.date = obj.date;
+    this.userRating = obj.userRating;
     this.description = obj.description;
   };
 
@@ -70,10 +71,6 @@ var AddRiverController = function AddRiverController($scope, $http, PARSE, $loca
       $scope.river = {};
     });
 
-    $location.path('/userHomePage');
-  };
-
-  $scope.cancelClick = function () {
     $location.path('/userHomePage');
   };
 };
@@ -89,23 +86,9 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var HomeController = function HomeController($scope, $location, $state) {
+var HomeController = function HomeController($scope) {};
 
-  $scope.signInClick = function () {
-    $location.path('/login');
-    // $state.go('root.login');
-  };
-
-  $scope.createAcctClick = function () {
-    $location.path('/createAcct');
-  };
-
-  $scope.mainPageClick = function () {
-    $location.path('/userHomePage');
-  };
-};
-
-HomeController.$inject = ['$scope', '$location', '$state'];
+HomeController.$inject = ['$scope'];
 
 exports['default'] = HomeController;
 module.exports = exports['default'];
@@ -116,20 +99,16 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var RiverListController = function RiverListController($scope, $http, PARSE, $location) {
+var RiverListController = function RiverListController($scope, $http, PARSE) {
 
   var url = PARSE.URL + 'classes/river';
 
   $http.get(url, PARSE.CONFIG).then(function (response) {
     $scope.rivers = response.data.results;
   });
-
-  $scope.goToAddRiverClick = function () {
-    $location.path('/addNewRiver');
-  };
 };
 
-RiverListController.$inject = ['$scope', '$http', 'PARSE', '$location'];
+RiverListController.$inject = ['$scope', '$http', 'PARSE'];
 
 exports['default'] = RiverListController;
 module.exports = exports['default'];
@@ -145,7 +124,6 @@ var SingleController = function SingleController($scope, $stateParams, $http, PA
   var url = PARSE.URL + 'classes/river/' + $stateParams.riverId;
 
   $http.get(url, PARSE.CONFIG).then(function (response) {
-
     $scope.singleRiver = response.data;
   });
 };

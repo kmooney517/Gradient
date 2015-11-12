@@ -5,23 +5,33 @@
       <li>User Name Here</li>
       <li><hr></li>
       <li><h5>Most Recent Rivers</h5></li>
-      <li ng-repeat="river in rivers"> {{ river.name}}</li>
+      <li ng-repeat="river in rivers"> <a href="#/singleRiver/{{ river.objectId }}">{{ river.name}}</a></li>
     </ul>
   </div>
 
 
   <div class="rightBar">
-    <a href="#/singleRiver/{{ river.objectId }}" ng-repeat="river in rivers">
-      <div class="tile">
-        <h3>{{ river.name }}</h3>
-        <p>Date Paddled: {{ river.date }}</p>
-        <img class="userHomePhoto" ng-src="{{ river.photo }}">
-        <img class="plusButton" ng-src="https://cdn4.iconfinder.com/data/icons/e-commerce-icon-set/48/More_2-128.png">
-        <hr>
+    <div class="tile" ng-repeat="river in rivers">
+
+      <a href="#/singleRiver/{{ river.objectId }}" >
+        <h2>{{ river.name }}</h2>
+      </a>
+      
+      <a href="#/singleRiver/{{ river.objectId }}" >
+        <img class="block userHomePhoto" ng-src="{{ river.photo }}">
+      </a>
+      <div class="block editButton">
+      <a href="#/editRiver/{{ river.objectId }}"><i class="fa fa-pencil-square-o fa-4x"></i></a>
       </div>
-    </a>
+      <div class="block rating">
+        {{ river.userRating }} / 5
+        <i class="fa fa-star"></i>
+      </div>
+
+      <hr>
+    </div>
     
-    <button ng-click="goToAddRiverClick()">Add New River</button>
+    <a href="#/addNewRiver"><button>Add New River</button></a>
   </div>
 
   

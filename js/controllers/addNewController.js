@@ -9,6 +9,7 @@ let AddRiverController = function($scope, $http, PARSE, $location) {
     this.class = obj.class;
     this.level = obj.level;
     this.date = obj.date;
+    this.userRating = obj.userRating;
     this.description = obj.description;
   };
 
@@ -21,13 +22,6 @@ let AddRiverController = function($scope, $http, PARSE, $location) {
 
     $location.path('/userHomePage');
   };
-
-  $scope.cancelClick = function() {
-    $location.path('/userHomePage');
-  };
-
-
-
 };
 
 AddRiverController.$inject = ['$scope', '$http', 'PARSE', '$location'];

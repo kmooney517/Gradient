@@ -1,20 +1,8 @@
-let HomeController = function ($scope, $location, $state) {
+let HomeController = function ($scope) {
 
-  $scope.signInClick = function () {
-    $location.path('/login');
-    // $state.go('root.login');
-  };
-
-  $scope.createAcctClick = function () {
-    $location.path('/createAcct');
-  };
-
-  $scope.mainPageClick = function () {
-    $location.path('/userHomePage');
-  };
 
 };
 
-HomeController.$inject = ['$scope', '$location', '$state'];
+HomeController.$inject = ['$scope'];
 
 export default HomeController;

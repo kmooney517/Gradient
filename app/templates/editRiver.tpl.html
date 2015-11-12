@@ -1,5 +1,5 @@
-<div class="addNew">
-  <form ng-submit="addRiver(river)">
+<div class="editEntry">
+  <form>
     <input placeholder="Photo Url" ng-model="river.photo">
     <input placeholder="River Name" ng-model="river.name">
     <input placeholder="River Location" ng-model="river.location">
@@ -7,9 +7,8 @@
     <input placeholder="Water Level" ng-model="river.level">
     <input type="date" placeholder="Date" ng-model="river.date">
     <input placeholder="User Rating / 5" ng-model="river.userRating">
-
     <textarea placeholder="description" ng-model="river.description"></textarea>
-    <button>Submit</button>
+    <button>Submit Changes</button>
     <a href="#/userHomePage"><button>Cancel</button></a>
   </form>
 </div>

@@ -102,6 +102,7 @@ var RiverListController = function RiverListController($scope, RiverService) {
 
   RiverService.getRivers().then(function (response) {
     $scope.rivers = response.data.results;
+    $scope.riverDays = response.data.results.length;
   });
 
   $scope.upVotes = 0;
@@ -111,7 +112,7 @@ var RiverListController = function RiverListController($scope, RiverService) {
     $scope.upVotes = $scope.upVotes + 1;
   };
 
-  $scope.downVote = function (riverId) {
+  $scope.downVote = function () {
     $scope.downVotes = $scope.downVotes + 1;
   };
 };
@@ -128,8 +129,6 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 var SingleController = function SingleController($scope, $stateParams, RiverService, $state) {
-
-  console.log(RiverService);
 
   RiverService.getRivers().then(function (response) {
     $scope.rivers = response.data.results;
@@ -249,6 +248,8 @@ var RiverService = function RiverService($http, PARSE) {
     this.description = obj.description;
     this.upVotes = obj.upVotes;
     this.downVotes = obj.downVotes;
+    this.boat = obj.boat;
+    this.equipment = obj.equipment;
   };
 
   this.addRiver = function (obj) {

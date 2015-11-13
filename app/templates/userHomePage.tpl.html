@@ -3,6 +3,8 @@
   <div class="leftBar">
     <ul>
       <li>User Name Here</li>
+      <li> You have logged <span>{{ riverDays }}</span> River Days <li>
+      <li> Keep it up!</li>
       <li><hr></li>
       <li><h5>Most Recent Rivers</h5></li>
       <li ng-repeat="river in rivers"> <a href="#/singleRiver/{{ river.objectId }}">{{ river.name }}</a></li>
@@ -30,8 +32,8 @@
       </div>
 
       <div class="block votes">
-        <button ng-click="upVote()">Cool {{ river.upVotes }}</button>
-        <button ng-click="downVote()">Wat? Be Careful! {{ river.downVotes }}</button>
+        <button ng-click="upVote()">Cool: <span>{{ this.upVotes }}</span> </button>
+        <button ng-click="downVote()">Wat? Be Careful!: <span>{{ this.downVotes }}</span> </button>
       </div>
 
       <hr>

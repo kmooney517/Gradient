@@ -1,6 +1,4 @@
 let SingleController = function($scope, $stateParams, RiverService, $state) {
-  
-  console.log(RiverService);
 
   RiverService.getRivers().then( function(response) {
     $scope.rivers = response.data.results;
@@ -9,6 +7,8 @@ let SingleController = function($scope, $stateParams, RiverService, $state) {
   RiverService.getRiver($stateParams.riverId).then( function (response) {
     $scope.singleRiver = response.data;
   });
+
+
 
   $scope.delete = function () {
     RiverService.deleteRiver($stateParams.riverId).then( 

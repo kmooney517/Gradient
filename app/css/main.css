@@ -8505,6 +8505,8 @@ body {
   width: 23.23176%; }
   .leftBar:last-child {
     margin-right: 0; }
+  .leftBar span {
+    color: red; }
   .leftBar button {
     margin-top: 5em;
     background: #333333; }
@@ -8562,6 +8564,10 @@ body {
   .rtRight span {
     color: #C1C9BF; }
 
+.singleRiv .singleRiverPhoto {
+  position: relative;
+  bottom: 5.2em; }
+
 .singleRiv .block {
   display: inline-block; }
 
@@ -8576,6 +8582,8 @@ body {
     color: #C1C9BF; }
 
 .singleRiv .rivDescription {
+  position: relative;
+  bottom: 4.5em;
   color: #C1C9BF;
   font-size: 1.2em;
   margin-top: 2%;
@@ -8586,6 +8594,8 @@ body {
   position: relative;
   top: 2em;
   margin-left: 2em; }
+  .votes span {
+    color: red; }
   .votes button {
     text-align: center;
     display: block;

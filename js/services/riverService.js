@@ -50,6 +50,8 @@ let RiverService = function ($http, PARSE) {
     this.description = obj.description;
     this.upVotes = obj.upVotes;
     this.downVotes = obj.downVotes;
+    this.boat = obj.boat;
+    this.equipment = obj.equipment;
   };
 
   this.addRiver = function (obj) {

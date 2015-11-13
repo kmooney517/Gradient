@@ -8,6 +8,8 @@ let RiverListController = function ($scope, RiverService) {
   $scope.upVotes = 0;
   $scope.downVotes = 0;
 
+
+
   $scope.upVote = function () {
     $scope.upVotes = $scope.upVotes + 1;
   };

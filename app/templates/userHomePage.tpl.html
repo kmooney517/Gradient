@@ -22,20 +22,14 @@
       <a href="#/singleRiver/{{ river.objectId }}" >
         <img class="block userHomePhoto" ng-src="{{ river.photo }}">
       </a>
+
+      <div class="block description">
+        <p>{{ river.description }}</p>
+      </div>
+
       <div class="block editButton">
         <a href="#/editRiver/{{ river.objectId }}"><i class="fa fa-pencil-square-o fa-3x"></i></a>
       </div>
-
-      <div class="block rating">
-        {{ river.userRating }} / 5
-        <i class="fa fa-star"></i>
-      </div>
-
-      <div class="block votes">
-        <button ng-click="upVote()">Cool: <span>{{ this.upVotes }}</span> </button>
-        <button ng-click="downVote()">Wat? Be Careful!: <span>{{ this.downVotes }}</span> </button>
-      </div>
-
       <hr>
     </div>
     

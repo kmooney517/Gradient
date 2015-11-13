@@ -8485,6 +8485,8 @@ body {
 .editEntry {
   width: 500px;
   margin: 15px auto; }
+  .editEntry span {
+    color: #C1C9BF; }
 
 .userHomePage {
   max-width: 68em;
@@ -8517,27 +8519,32 @@ body {
   margin-right: 2.35765%;
   width: 74.41059%;
   padding-left: 2em;
-  border-left: 3px solid #333333; }
+  border-left: 3px solid #333333;
+  color: #C1C9BF; }
   .rightBar:last-child {
     margin-right: 0; }
-  .rightBar .tile h2 {
-    color: #C1C9BF; }
   .rightBar .block {
     display: inline-block; }
   .rightBar img {
     height: 10em;
-    width: 30%; }
+    width: 30%;
+    position: relative;
+    bottom: 5.5em; }
   .rightBar .editButton {
-    height: 2em;
-    width: 2em;
-    margin-left: 2em; }
+    margin-left: 2em;
+    position: relative;
+    bottom: 5em; }
     .rightBar .editButton a {
       color: inherit; }
-  .rightBar div.rating {
+    .rightBar .editButton i {
+      color: black; }
+  .rightBar div.description {
     font-size: 3em;
-    color: yellow;
     margin-left: 1em;
-    text-align: center; }
+    width: 8em;
+    height: 4em;
+    overflow: scroll;
+    whitespace: no-wrap; }
 
 .singleRiverPage {
   max-width: 68em;
@@ -8562,7 +8569,7 @@ body {
   float: right;
   margin-right: 1em; }
   .rtRight span {
-    color: #C1C9BF; }
+    color: yellow; }
 
 .singleRiv .singleRiverPhoto {
   position: relative;

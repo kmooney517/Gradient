@@ -46,7 +46,6 @@ let RiverService = function ($http, PARSE) {
     this.class = obj.class;
     this.level = obj.level;
     this.date = obj.date;
-    this.userRating = obj.userRating;
     this.description = obj.description;
     this.upVotes = obj.upVotes;
     this.downVotes = obj.downVotes;
@@ -56,13 +55,22 @@ let RiverService = function ($http, PARSE) {
 
   this.addRiver = function (obj) {
     let r = new River(obj);
+
     return $http.post(url, r, PARSE.CONFIG);
+
   };
 
 
   // Creating Edit an existing River Instance
 
   this.update = function (obj) {
+    return $http.put(url + '/' + obj.objectId, obj, PARSE.CONFIG);
+  };
+
+  // Creating the Rating System
+
+  this.rate = function (obj, rating) {
+    obj.rating = rating;
     return $http.put(url + '/' + obj.objectId, obj, PARSE.CONFIG);
   };
 

@@ -14,7 +14,9 @@
 
   <div class="rightBar">
     <h4 class="rtLeft"> River Name: <span>{{ singleRiver.name }}</span> </h4>
-    <h4 class="rtRight">My Rating: <span>{{ singleRiver.userRating }} / 5</span></h4>
+    <h4 class="rtRight">My Rating: 
+      <rating value="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" ng-click="rateMe(singleRiver)"></rating>
+    </h4>
     <hr>
 
     <div class="singleRiv">
@@ -27,8 +29,6 @@
         <li> Water Level: <span>{{ singleRiver.level }}</span> </li>
         <li> Boat Paddled: <span>{{ singleRiver.boat }}</span> </li>
         <li> Other Equipment: <span>{{ singleRiver.equipment }}</span> </li>
-
-
       </ul>
       
       <p class="rivDescription"> Description: {{ singleRiver.description }} </p>

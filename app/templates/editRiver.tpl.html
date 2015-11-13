@@ -1,15 +1,14 @@
 <div class="editEntry">
   <form ng-submit="editRiver(singleRiver)">
-    <input ng-model="singleRiver.photo">
-    <input ng-model="singleRiver.name">
-    <input ng-model="singleRiver.location">
-    <input ng-model="singleRiver.class">
-    <input ng-model="singleRiver.level">
-    <input ng-model="singleRiver.date">
-    <input ng-model="singleRiver.boat">
-    <input ng-model="singleRiver.equipment">
-    <input ng-model="singleRiver.userRating">
-    <textarea ng-model="singleRiver.description"></textarea>
+    <span>Photo Url:</span><input ng-model="singleRiver.photo">
+    <span>River Name:</span><input ng-model="singleRiver.name">
+    <span>River Location:</span><input ng-model="singleRiver.location">
+    <span>Class:</span><input ng-model="singleRiver.class">
+    <span>Water Level:</span><input ng-model="singleRiver.level">
+    <span>Date Paddled:</span><input ng-model="singleRiver.date">
+    <span>Boat Used:</span><input ng-model="singleRiver.boat">
+    <span>Other Equipment Used:</span><input ng-model="singleRiver.equipment">
+    <span>Personal Description:</span><textarea ng-model="singleRiver.description"></textarea>
     <button>Submit Changes</button>
     <a href="#/userHomePage"><button>Cancel</button></a>
   </form>

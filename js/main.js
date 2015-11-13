@@ -1,5 +1,7 @@
 import angular from 'angular';
 import 'angular-ui-router';
+import 'angular-foundation'; 
+import 'angular-h-sweetalert';
 import configFunction from './config';
 import AddRiverController from './controllers/addNewController';
 import RiverListController from './controllers/riverListController';
@@ -9,7 +11,7 @@ import RiverService from './services/riverService';
 
 
 angular
-  .module('app', ['ui.router'])
+  .module('app', ['ui.router', 'mm.foundation', 'hSweetAlert'])
 
   .constant('PARSE', {
     URL: 'https://api.parse.com/1/',

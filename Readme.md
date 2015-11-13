@@ -1,6 +1,14 @@
 ## Welcome to My Project
 
-> I am your Readme.md file, you should probably update me.
+This is my first attempt at a webapp with AngularJS.
+
+The app is used as a riverLog.  You can submit information about your trip and it will keep track of the number of days you have paddled. You can then click on the single picture to get more information about that specific paddling trip.
+
+
+The login/create account functions are not currently available - when you click the login or create acct button it will take you to the main page.
+
+I intened to add in more specific guidelines for most inputs. (River Class, Water Level(CFS v Ft), Boat and gear lists).  I want to eventually add in a dropdown/search feature for the river that you are entering. I also want to be able to check in to a river again and log how many times you have checked in to specific rivers.
+
 
 
 ## Usage

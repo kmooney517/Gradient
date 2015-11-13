@@ -74,31 +74,24 @@ Object.defineProperty(exports, '__esModule', {
 });
 var EditRiverController = function EditRiverController($scope, $stateParams, RiverService, $state, sweet) {
 
-  console.log(RiverService);
-
   RiverService.getRiver($stateParams.riverId).then(function (response) {
     $scope.singleRiver = response.data;
-    console.log(response.data);
   });
 
   $scope.editRiver = function (obj) {
-    RiverService.update(obj).then(function (response) {});
-
-    // sweet.show({
-    //   title: 'Confirm',
-    //   text: 'Delete this file?',
-    //   type: 'warning',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#DD6B55',
-    //   confirmButtonText: 'Yes, delete it!',
-    //   closeOnConfirm: false
-    // },
-    // function() {
-    //   sweet.show('Deleted!', 'The file has been deleted.', 'success');
-    // }
-    // );
-
-    $state.go('root.userHomePage');
+    sweet.show({
+      title: 'Confirm',
+      text: 'wat',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Submit Changes!',
+      closeOnConfirm: false
+    }, function () {
+      RiverService.update(obj).then(function (response) {});
+      sweet.show('Cancel!', '', 'success');
+      $state.go('root.userHomePage');
+    });
   };
 };
 
@@ -143,7 +136,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var SingleController = function SingleController($scope, $stateParams, RiverService, $state) {
+var SingleController = function SingleController($scope, $stateParams, RiverService, $state, sweet) {
 
   RiverService.getRivers().then(function (response) {
     $scope.rivers = response.data.results;
@@ -174,11 +167,23 @@ var SingleController = function SingleController($scope, $stateParams, RiverServ
   };
 
   $scope['delete'] = function () {
-    RiverService.deleteRiver($stateParams.riverId).then($state.go('root.userHomePage'));
+    sweet.show({
+      title: 'Confirm',
+      text: 'Are you sure you want to delete this entry?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Submit Changes!',
+      closeOnConfirm: false
+    }, function () {
+      RiverService.deleteRiver($stateParams.riverId).then({});
+      sweet.show('Cancel!', '', 'success');
+      $state.go('root.userHomePage');
+    });
   };
 };
 
-SingleController.$inject = ['$scope', '$stateParams', 'RiverService', '$state'];
+SingleController.$inject = ['$scope', '$stateParams', 'RiverService', '$state', 'sweet'];
 
 exports['default'] = SingleController;
 module.exports = exports['default'];

@@ -1,4 +1,4 @@
-let SingleController = function($scope, $stateParams, RiverService, $state) {
+let SingleController = function($scope, $stateParams, RiverService, $state, sweet) {
 
 
   RiverService.getRivers().then( function(response) {
@@ -37,12 +37,26 @@ let SingleController = function($scope, $stateParams, RiverService, $state) {
   };
 
   $scope.delete = function () {
-    RiverService.deleteRiver($stateParams.riverId).then( 
-      $state.go('root.userHomePage')
-    ); 
+    sweet.show({
+      title: 'Confirm',
+      text: 'Are you sure you want to delete this entry?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Submit Changes!',
+      closeOnConfirm: false
+    }, 
+    
+    function() {
+      RiverService.deleteRiver($stateParams.riverId).then( {
+      });  
+      sweet.show('Cancel!', '', 'success');
+      $state.go('root.userHomePage');
+    }
+    );
   };
 };
 
-SingleController.$inject = ['$scope', '$stateParams', 'RiverService', '$state'];
+SingleController.$inject = ['$scope', '$stateParams', 'RiverService', '$state', 'sweet'];
 
 export default SingleController;

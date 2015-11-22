@@ -1,5 +1,7 @@
 ## Welcome to My Project
 
+> Link: http://gradient.surge.sh/#/
+
 This is my first attempt at a webapp with AngularJS.
 
 The app is used as a riverLog.  You can submit information about your trip and it will keep track of the number of days you have paddled. You can then click on the single picture to get more information about that specific paddling trip.
@@ -8,6 +10,17 @@ The app is used as a riverLog.  You can submit information about your trip and i
 The login/create account functions are not currently available - when you click the login or create acct button it will take you to the main page.
 
 I intened to add in more specific guidelines for most inputs. (River Class, Water Level(CFS v Ft), Boat and gear lists).  I want to eventually add in a dropdown/search feature for the river that you are entering. I also want to be able to check in to a river again and log how many times you have checked in to specific rivers.
+
+> Objectives of the project: 
+Be able to plan an entire application from start to finish
+Demonstrate a strong foundation in working with AngularJS
+Demonstrate a strong understanding of the parts of AngularJS
+>> Project consists of:
+  at least three controllers
+  at least three different views (template files)
+  at least one Factory & Service
+  Using ui.router to navigate through the app
+  Using Parse REST API for storing/managing your data
 
 
 
